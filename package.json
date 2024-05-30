@@ -9,6 +9,10 @@
   "keywords": [
     "puppeteer"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/minhajul-im/Puppeteer"
+  },
   "author": "minhajul",
   "license": "ISC",
   "dependencies": {
