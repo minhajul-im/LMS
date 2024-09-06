@@ -1,12 +1,15 @@
+import { addTask } from "@/actions/addTask";
+
 const AddTask = () => {
   return (
-    <form action="" className="flex gap-4">
+    <form action={addTask} className="flex gap-4">
       <label
         htmlFor="Username"
         className="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
         <input
           type="text"
           id="Username"
+          name="title"
           className="peer border-none bg-transparent placeholder-transparent focus:border-transparent px-2 py-2 focus:outline-none focus:ring-0"
           placeholder="Username"
         />
