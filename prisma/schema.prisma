@@ -14,35 +14,33 @@ datasource db {
 }
 
 
-
-model Post {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  slug     String    @unique
-  title    String
-  body     String
-  author   User      @relation(fields: [authorId], references: [id])
-  authorId String    @db.ObjectId
-  comments Comment[]
-}
-
 model User {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  email   String   @unique
-  name    String?
-  address Address?
-  posts   Post[]
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  email      String      @unique
+  password   String
+  role       Role        @default(USER)
+  // enrollments Enrollment[]
 }
 
-model Comment {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  comment String
-  post    Post   @relation(fields: [postId], references: [id])
-  postId  String @db.ObjectId
+enum Role {
+  ADMIN
+  USER
 }
 
-type Address {
-  street String
-  city   String
-  state  String
-  zip    String
-}
+
+// model Course {
+//   id          String       @id @default(auto()) @map("_id") @db.ObjectId
+//   title       String
+//   description String
+//   enrolledUsers Enrollment[]
+// }
+
+// model Enrollment {
+//   id        String    @id @default(auto()) @map("_id") @db.ObjectId
+//   user      User      @relation(fields: [userId], references: [id])
+//   userId    String    @db.ObjectId
+//   course    Course    @relation(fields: [courseId], references: [id])
+//   courseId  String    @db.ObjectId
+//   approved  Boolean   @default(false)
+// }
+
