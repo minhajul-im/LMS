@@ -1,12 +1,11 @@
-import { createUser, findAllUsers } from "@/action/_user";
+import { UserSignIn } from "@/components/auth/user-sign-in";
 
-const HomePage = async () => {
-  await createUser("minhajul.cpp@gmail.com", "minhaj@hello", "ADMIN");
-  await findAllUsers();
-
+const HomePage = () => {
   return (
     <main className="container mx-auto">
-      <h1 className="pt-10">hello</h1>
+      <h1 className="pt-10 text-center text-3xl text-red-600"> Hello LMS</h1>
+
+      <UserSignIn />
     </main>
   );
 };
