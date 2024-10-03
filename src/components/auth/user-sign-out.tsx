@@ -1,13 +1,12 @@
 import { signOutWithSocial } from "@/actions/_auth";
+import { Button } from "../ui/button";
 
 export const UserSingOut = async () => {
   return (
     <form
       action={signOutWithSocial}
       className="flex justify-center gap-4 flex-col">
-      <button className="bg-blue-400 my-2 text-white p-1 rounded" type="submit">
-        sign out
-      </button>
+      <Button type="submit">sign out</Button>
     </form>
   );
 };

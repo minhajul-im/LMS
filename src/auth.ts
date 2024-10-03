@@ -4,11 +4,16 @@ import {
   googleClientSecret,
 } from "./utils/constant";
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import { prisma } from "./lib/prisma";
+import Google from "next-auth/providers/google";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const { auth, handlers, signIn, signOut } = NextAuth({
+  adapter: PrismaAdapter(prisma),
+  session: { strategy: "jwt" },
+  secret: authSecret,
   providers: [
-    GoogleProvider({
+    Google({
       clientId: googleClientId,
       clientSecret: googleClientSecret,
       authorization: {
@@ -20,5 +25,4 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  secret: authSecret,
 });
