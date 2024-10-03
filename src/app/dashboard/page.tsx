@@ -2,21 +2,23 @@ import Link from "next/link";
 import { auth } from "@/auth";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { findAllUsers } from "@/actions/_user";
+import { findSingleUser } from "@/actions/_user";
 import { UserSingOut } from "@/components/auth/user-sign-out";
+import { UserDashboard } from "@/components/dashboard/user/user-dashboard";
+import { AdminDashboard } from "@/components/dashboard/admin/admin-dashboard";
 
 const Dashboard = async () => {
   const session = await auth();
-  const users = await findAllUsers();
+  const user = await findSingleUser(session?.user?.email as string);
 
   if (!session?.user) redirect("/");
 
-  const image = session?.user?.image as string;
-  const name = session?.user?.name as string;
-  const email = session?.user?.email as string;
+  const name = user?.name as string;
+  const image = user?.image as string;
+  const email = user?.email as string;
 
   return (
-    <main className="container mx-auto">
+    <main className="container mx-auto my-2">
       <div className="flex justify-between items-center">
         <Link href="/">Home</Link>
         <div className="flex gap-4 items-center">
@@ -39,27 +41,8 @@ const Dashboard = async () => {
         </div>
       </div>
 
-      <div className="my-10 px-20 flex flex-col gap-4 bg-gray-400">
-        {users.map((user) => (
-          <div
-            key={user?.id}
-            className="flex justify-center gap-4 items-center">
-            <div className="w-10 h-10 rounded-full border-2 border-green-600 relative">
-              <Image
-                src={user?.image as string}
-                alt={user?.name as string}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-full"
-              />
-            </div>
-            <div>
-              <h3 className="text-green-500">Name: {user?.name}</h3>
-              <p className="italic text-xs text-gray-600">{user?.email}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      {user?.role === "ADMIN" && <AdminDashboard />}
+      {user?.role === "USER" && <UserDashboard />}
     </main>
   );
 };
