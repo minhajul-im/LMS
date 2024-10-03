@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { auth } from "@/auth";
 import { Navbar } from "./navbar";
-// import MobileNavbar from "./mobile-navbar";
+import MobileNavbar from "./mobile-navbar";
 import { navData } from "@/utils/constant";
 import { GraduationCap } from "lucide-react";
-// import { signInWithSocial } from "@/actions/_auth";
+import { signInWithSocial } from "@/actions/_auth";
 import { UserProfile } from "../auth/user-profile";
 import { UserSigned, UserSignIn } from "../auth/user-sign-in";
 
@@ -37,6 +37,30 @@ export const Header = async () => {
                 )}
               </Navbar>
             </nav>
+            <MobileNavbar
+              links={navData}
+              isSigned={session?.user ? true : false}>
+              {session ? (
+                <li className="py-2 flex justify-start gap-1 flex-col">
+                  <UserSigned
+                    image={session?.user?.image as string}
+                    name={session?.user?.name as string}
+                  />
+                  <span className="text-base pb-1 pt-3">
+                    {session?.user?.name as string}
+                  </span>
+                  <span className="text-xs text-muted-foreground italic">
+                    {session?.user?.email as string}
+                  </span>
+                </li>
+              ) : (
+                <form action={signInWithSocial}>
+                  <button type="submit" name="action" value="google">
+                    Sign in
+                  </button>
+                </form>
+              )}
+            </MobileNavbar>
           </div>
         </div>
       </header>
