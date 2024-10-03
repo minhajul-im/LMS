@@ -20,6 +20,20 @@
     preact "10.11.3"
     preact-render-to-string "5.2.3"
 
+"@auth/mongodb-adapter@^3.5.3":
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/@auth/mongodb-adapter/-/mongodb-adapter-3.5.3.tgz#54e9a4891e217f52eb36fcf1b5178ef5de984199"
+  integrity sha512-uiSx4FeiUMJaPCCQuVd3o56XpBWRnzNhLMBMGnE2FgLk+tqGyvjEJiQ/hloDHZZaYkQ6jTnPYs7V8yAieYIJpA==
+  dependencies:
+    "@auth/core" "0.35.3"
+
+"@auth/prisma-adapter@^2.5.3":
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/@auth/prisma-adapter/-/prisma-adapter-2.5.3.tgz#38a600341d3dda07c67344e06602039cb26c0ba6"
+  integrity sha512-hUQ7KT4Ufbg4RqmfvRUNwQjuNsTdxWXTIid8IbmAcT5b6DMWQEvDEJUZL14rgrBHk5xZQbagfM28VxF75NgnNw==
+  dependencies:
+    "@auth/core" "0.35.3"
+
 "@eslint-community/eslint-utils@^4.2.0", "@eslint-community/eslint-utils@^4.4.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz#a23514e8fb9af1269d5f7788aa556798d61c6b59"
