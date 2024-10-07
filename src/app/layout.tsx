@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "quiz-lms",
+  title: "lms",
   description: "this project will be kind of lms",
 };
 

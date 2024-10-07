@@ -1,7 +1,5 @@
 import { ScreenDashboard } from "@/modules/dashboard/screen-dashboard";
 
-const DashboardPage = () => {
+export default function DashboardPage() {
   return <ScreenDashboard />;
-};
-
-export default DashboardPage;
+}
