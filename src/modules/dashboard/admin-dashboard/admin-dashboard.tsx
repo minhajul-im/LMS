@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { findAllUsers } from "@/actions/_user";
+import { findAllUsers } from "../actions/find-all-user";
 
 export const AdminDashboard = async () => {
   const users = await findAllUsers();

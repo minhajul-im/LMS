@@ -3,27 +3,17 @@
 import React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { ModeToggle } from "./theme-toggle";
+import { Data, DesktopProps } from "../type";
 import { usePathname } from "next/navigation";
-import { buttonVariants } from "../ui/button";
+import { ThemeSwitcher } from "../components/theme-switcher";
+import { buttonVariants } from "@/common/components/ui/button";
 
-export type LINKS_TYPE = {
-  title: string;
-  link: string;
-};
-
-export type NavProps = {
-  children: React.ReactNode | null;
-  links: LINKS_TYPE[];
-  isSigned?: boolean;
-};
-
-export const Navbar = ({ links, children }: NavProps) => {
+export const DesktopNavbar = ({ items, children }: DesktopProps) => {
   const path = usePathname();
 
   return (
     <ul className="flex items-center gap-6 text-sm">
-      {links.map((item: LINKS_TYPE) => (
+      {items.map((item: Data) => (
         <li key={item?.title}>
           <Link
             href={item.link}
@@ -37,7 +27,7 @@ export const Navbar = ({ links, children }: NavProps) => {
       ))}
 
       <li>
-        <ModeToggle />
+        <ThemeSwitcher />
       </li>
       <li>{children}</li>
     </ul>

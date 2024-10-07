@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { auth } from "@/auth";
-import { Navbar } from "./navbar";
-import MobileNavbar from "./mobile-navbar";
-import { navData } from "@/utils/constant";
+import { data } from "./data";
 import { GraduationCap } from "lucide-react";
-import { signInWithSocial } from "@/actions/_auth";
-import { UserProfile } from "../auth/user-profile";
-import { UserSigned, UserSignIn } from "../auth/user-sign-in";
+import { MobileNavbar } from "./mobile-navbar/mobile-navbar";
+import { DesktopNavbar } from "./desktop-navbar/desktop-navbar";
+import { UserSingInButton } from "./components/user-singin-button";
+import { UserProfilePicture } from "./components/user-profile-picture";
+import { UserProfileDropdown } from "./components/user-profile-dropdown";
+import { signInWithSocial } from "./actions/auth";
 
-export const Header = async () => {
+export const ScreenHeader = async () => {
   const session = await auth();
 
   return (
@@ -24,25 +25,23 @@ export const Header = async () => {
 
           <div className="md:flex md:items-center md:gap-12">
             <nav aria-label="Global" className="hidden md:block">
-              <Navbar links={navData}>
+              <DesktopNavbar items={data}>
                 {session ? (
-                  <UserProfile>
-                    <UserSigned
+                  <UserProfileDropdown>
+                    <UserProfilePicture
                       image={session?.user?.image as string}
                       name={session?.user?.name as string}
                     />
-                  </UserProfile>
+                  </UserProfileDropdown>
                 ) : (
-                  <UserSignIn />
+                  <UserSingInButton />
                 )}
-              </Navbar>
+              </DesktopNavbar>
             </nav>
-            <MobileNavbar
-              links={navData}
-              isSigned={session?.user ? true : false}>
+            <MobileNavbar items={data} session={session}>
               {session ? (
                 <li className="py-2 flex justify-start gap-1 flex-col">
-                  <UserSigned
+                  <UserProfilePicture
                     image={session?.user?.image as string}
                     name={session?.user?.name as string}
                   />

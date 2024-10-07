@@ -9,7 +9,7 @@ type MenuAction = {
   onClose: () => void;
 };
 
-export const useMobileMenu = create<MenuAction & Menu>((set) => ({
+export const useMobileNavbar = create<MenuAction & Menu>((set) => ({
   isOpen: false,
   onOpen: () => set(() => ({ isOpen: true })),
   onClose: () => set(() => ({ isOpen: false })),

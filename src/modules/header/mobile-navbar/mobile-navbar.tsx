@@ -1,34 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "../ui/button";
 import { X, Menu } from "lucide-react";
-import { useMobileMenu } from "@/store";
-import { ModeToggle } from "./theme-toggle";
+import { Data, MobileProps } from "../type";
 import { usePathname } from "next/navigation";
-import { LINKS_TYPE, NavProps } from "./navbar";
-import { UserSingOut } from "../auth/user-sign-out";
+import { useMobileNavbar } from "../store/store";
+import { Button } from "@/common/components/ui/button";
+import { ThemeSwitcher } from "../components/theme-switcher";
+import { UserSingOutButton } from "../components/user-sign-out-button";
 
-const MobileNavbar = ({ links, children, isSigned }: NavProps) => {
+export const MobileNavbar = ({ items, children, session }: MobileProps) => {
   const path = usePathname();
-  const { isOpen, onOpen, onClose } = useMobileMenu();
+  const { isOpen, onOpen, onClose } = useMobileNavbar();
 
   let SignOut;
   let SignIn;
-  let items = [...links];
-  if (isSigned) {
-    items.push({ link: "/dashboard", title: "Dashboard" });
+  let newItems = [...items];
+  if (session) {
+    newItems.push({ link: "/dashboard", title: "Dashboard" });
     SignOut = (
       <li
         className={`py-3 text-base block transition-transform duration-500 ease-in-out font-semibold text-red-600 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
-        style={{ transitionDelay: `${items.length * 100}ms` }}>
-        <UserSingOut />
+        style={{ transitionDelay: `${newItems.length * 100}ms` }}>
+        <UserSingOutButton />
       </li>
     );
   } else {
-    items = links;
+    newItems = items;
     SignIn = (
       <li
         className={`py-3 text-base block transition-transform duration-500 ease-in-out font-semibold ${
@@ -56,9 +56,9 @@ const MobileNavbar = ({ links, children, isSigned }: NavProps) => {
           </div>
 
           <ul className="px-6">
-            {isSigned ? children : SignIn}
+            {session ? children : SignIn}
 
-            {items.map((item: LINKS_TYPE, index: number) => (
+            {newItems.map((item: Data, index: number) => (
               <Link
                 href={item.link}
                 key={item.title}
@@ -80,7 +80,7 @@ const MobileNavbar = ({ links, children, isSigned }: NavProps) => {
       </section>
 
       <div className="flex items-center gap-5">
-        <ModeToggle />
+        <ThemeSwitcher />
 
         <Button onClick={onOpen} size={"icon"} variant="outline">
           <Menu />
@@ -89,5 +89,3 @@ const MobileNavbar = ({ links, children, isSigned }: NavProps) => {
     </nav>
   );
 };
-
-export default MobileNavbar;
