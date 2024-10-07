@@ -4,10 +4,10 @@ import { data } from "./data";
 import { GraduationCap } from "lucide-react";
 import { MobileNavbar } from "./mobile-navbar/mobile-navbar";
 import { DesktopNavbar } from "./desktop-navbar/desktop-navbar";
-import { UserSingInButton } from "./components/user-singin-button";
+import { UserSingInDesktop } from "./components/user-singin-desktop";
 import { UserProfilePicture } from "./components/user-profile-picture";
 import { UserProfileDropdown } from "./components/user-profile-dropdown";
-import { signInWithSocial } from "./actions/auth";
+import { UserSingInMobile } from "./components/user-signin-mobile";
 
 export const ScreenHeader = async () => {
   const session = await auth();
@@ -34,7 +34,7 @@ export const ScreenHeader = async () => {
                     />
                   </UserProfileDropdown>
                 ) : (
-                  <UserSingInButton />
+                  <UserSingInDesktop />
                 )}
               </DesktopNavbar>
             </nav>
@@ -53,11 +53,7 @@ export const ScreenHeader = async () => {
                   </span>
                 </li>
               ) : (
-                <form action={signInWithSocial}>
-                  <button type="submit" name="action" value="google">
-                    Sign in
-                  </button>
-                </form>
+                <UserSingInMobile />
               )}
             </MobileNavbar>
           </div>
