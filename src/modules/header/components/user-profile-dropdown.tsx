@@ -1,15 +1,19 @@
-import {
-  DropdownMenu,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
 import React from "react";
 import Link from "next/link";
-import { UserSingOut } from "./user-sign-out";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+} from "@/common/components/ui/dropdown-menu";
+import { UserSingOutButton } from "./user-sign-out-button";
 
-export const UserProfile = ({ children }: { children: React.ReactNode }) => {
+export const UserProfileDropdown = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
@@ -25,7 +29,7 @@ export const UserProfile = ({ children }: { children: React.ReactNode }) => {
         </Link>
 
         <DropdownMenuLabel className="text-center my-2 font-normal text-base hover:underline duration-100 text-red-600">
-          <UserSingOut />
+          <UserSingOutButton />
         </DropdownMenuLabel>
       </DropdownMenuContent>
     </DropdownMenu>

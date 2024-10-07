@@ -1,6 +1,6 @@
-import { signOutWithSocial } from "@/actions/_auth";
+import { signOutWithSocial } from "../actions/auth";
 
-export const UserSingOut = () => {
+export const UserSingOutButton = () => {
   return (
     <form action={signOutWithSocial}>
       <button type="submit">Sign Out</button>

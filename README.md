@@ -5,7 +5,7 @@ This project is a Learning Management System (LMS) built with Next.js and Tailwi
 ## Project Structure
 
 - **Frontend**: Built with Next.js and React, styled using Tailwind CSS.
-- **Backend**: Uses Prisma as an ORM to interact with the database.
+- **Backend**: Uses Prisma as an ORM to interact with the MongoDB database.
 
 ## Getting Started
 
@@ -14,7 +14,7 @@ This project is a Learning Management System (LMS) built with Next.js and Tailwi
 Make sure you have the following installed:
 
 - Node.js (version 18 or higher)
-- npm or yarn
+- npm or yarn or pnpm
 
 ### Installation
 

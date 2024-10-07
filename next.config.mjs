@@ -8,9 +8,6 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    fetch: true,
-  },
 };
 
 export default nextConfig;
